@@ -1,5 +1,10 @@
 export class SeriesCalculation {
+    private _fibonacciSeriesElements: Array<number>;
+    private _lastNFibonacciCalculated: number;
+
     constructor() {
+        this._fibonacciSeriesElements = [0, 1];
+        this._lastNFibonacciCalculated = 1;
     }
 
     /**
@@ -46,31 +51,44 @@ export class SeriesCalculation {
      * Private method that returns the n-th element of the Fibonacci series.
      * @param n{number} n-th desired term from the Fibonacci series; n must be 0 or greater.
      */
-    private static _fibonacciSeriesElement(n: number): number {
+    private _fibonacciSeriesElement(n: number): number {
         if (n < 0) {
             throw new Error("n must be 0 or greater.");
         }
         // First two elements of the serie
-        let fibonacciSecondLastElement: number = 0;
-        let fibonacciLastElement: number = 1;
+        let fibonacciSecondLastElement: number = this._fibonacciSeriesElements[0];
+        let fibonacciLastElement: number = this._fibonacciSeriesElements[1];
+        let result: number = 0;
+        let iterator: number = 2;
         if (n === 0) {
             return fibonacciSecondLastElement;
         }
         if (n === 1) {
             return fibonacciLastElement;
         }
-        // I haven't used the array because I just need the  result, not all the elements of the serie.
-        let result: number = 0;
-        let iterator: number = 2;
+        if (n <= this._lastNFibonacciCalculated) {
+            return this._fibonacciSeriesElements[n];
+        } else {
+            fibonacciSecondLastElement = this._fibonacciSeriesElements[this._lastNFibonacciCalculated - 1];
+            fibonacciLastElement = this._fibonacciSeriesElements[this._lastNFibonacciCalculated];
+            iterator = this._lastNFibonacciCalculated;
+        }
+
+
         while (iterator <= n) {
             result = fibonacciLastElement + fibonacciSecondLastElement;
             fibonacciSecondLastElement = fibonacciLastElement;
             fibonacciLastElement = result;
+            if (n > this._lastNFibonacciCalculated) {
+                this._fibonacciSeriesElements.push(result);
+                this._lastNFibonacciCalculated += 1;
+            }
             iterator++;
         }
 
         return result;
     }
+
     /**
      * Returns the n-th term of the following series:
      * f(n) = 2 triangular(n - 2) * 3 primeNumber(n - 2) * 7 fibonacci(n - 1)
@@ -79,6 +97,6 @@ export class SeriesCalculation {
     calcSeriesTerm(n: number): number {
         return (2 * SeriesCalculation._triangularNumber(n - 2))
             * (3 * SeriesCalculation._primeNumber(n - 2))
-            * (7 * SeriesCalculation._fibonacciSeriesElement(n - 1))
+            * (7 * this._fibonacciSeriesElement(n - 1))
     }
 }
