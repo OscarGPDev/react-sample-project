@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Form from "./components/Form";
+import MathContext from "./context/MathContext";
+import mathReducer from "./reducer/mathReducer";
+import Result from "./components/Result";
+import Calculation from "./components/Calculation";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [mathState, mathDispatch] = React.useReducer(mathReducer, {
+        inputValue: 0,
+        resultValue: 0,
+        errorMessage: ""
+    });
+
+    const providerState = {
+        mathState,
+        mathDispatch
+    }
+    return (
+        <div className="App">
+            <MathContext.Provider value={providerState}>
+                <Form/>
+                <Calculation/>
+                <Result/>
+            </MathContext.Provider>
+        </div>
+    );
 }
 
 export default App;
