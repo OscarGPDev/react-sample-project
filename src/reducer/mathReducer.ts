@@ -11,7 +11,7 @@ const mathReducer = (state: mathState, action: reducer) => {
             let resultValue: number = 0;
             let errorMessage: string = "";
             try {
-                resultValue = action.seriesCalculationInstance.calcSeriesTerm(state.inputValue)
+                resultValue = action.seriesCalculationInstance.calcSeriesTerm(state.inputValue);
             } catch (e) {
                 errorMessage = "No hay un valor valido para ese termino"
             }

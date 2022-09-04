@@ -1,5 +1,5 @@
 export class SeriesCalculation {
-    private _fibonacciSeriesElements: Array<number>;
+    private readonly _fibonacciSeriesElements: Array<number>;
     private _lastNFibonacciCalculated: number;
 
     constructor() {
@@ -74,7 +74,6 @@ export class SeriesCalculation {
             iterator = this._lastNFibonacciCalculated;
         }
 
-
         while (iterator <= n) {
             result = fibonacciLastElement + fibonacciSecondLastElement;
             fibonacciSecondLastElement = fibonacciLastElement;
@@ -95,6 +94,9 @@ export class SeriesCalculation {
      * @param n{number} n-th desired term from the series; n must be 0 or greater.
      * */
     calcSeriesTerm(n: number): number {
+        if (!Number.isInteger(n)) {
+            throw new Error("El valor no es un número");
+        }
         return (2 * SeriesCalculation._triangularNumber(n - 2))
             * (3 * SeriesCalculation._primeNumber(n - 2))
             * (7 * this._fibonacciSeriesElement(n - 1))

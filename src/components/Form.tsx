@@ -14,7 +14,9 @@ const Form = () => {
         <label>
             Ingresa el termino n a calcular:
             <input type="text" value={mathState.inputValue} onChange={(e) => {
-                mathDispatch({type: mathReducerActionsEnum.setValue, payload: +e.target.value})
+                if (Number.isInteger(+e.target.value)) {
+                    mathDispatch({type: mathReducerActionsEnum.setValue, payload: +e.target.value})
+                }
             }
             }/>
         </label>

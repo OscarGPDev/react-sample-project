@@ -1,9 +1,8 @@
-import {SeriesCalculation} from "../math/SeriesCalculation";
-
 import mathReducerActions from "../types/mathReducerActions";
+import {SeriesCalculation} from "../math/SeriesCalculation";
 
 export default interface reducer {
     type: mathReducerActions,
-    seriesCalculationInstance: SeriesCalculation,
     payload: number,
+    seriesCalculationInstance: SeriesCalculation
 }
