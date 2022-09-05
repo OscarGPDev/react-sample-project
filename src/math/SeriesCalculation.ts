@@ -95,7 +95,7 @@ export class SeriesCalculation {
      * */
     calcSeriesTerm(n: number): number {
         if (!Number.isInteger(n)) {
-            throw new Error("El valor no es un número");
+            throw new Error("The value is not a number");
         }
         return (2 * SeriesCalculation._triangularNumber(n - 2))
             * (3 * SeriesCalculation._primeNumber(n - 2))
