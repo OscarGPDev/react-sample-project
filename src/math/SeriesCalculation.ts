@@ -74,7 +74,7 @@ export class SeriesCalculation {
             iterator = this._lastNFibonacciCalculated;
         }
 
-        while (iterator <= n) {
+        while (iterator < n) {
             result = fibonacciLastElement + fibonacciSecondLastElement;
             fibonacciSecondLastElement = fibonacciLastElement;
             fibonacciLastElement = result;
