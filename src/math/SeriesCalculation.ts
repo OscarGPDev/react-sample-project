@@ -15,7 +15,7 @@ export class SeriesCalculation {
         if (n < 0) {
             throw new Error("n must be 0 or greater.");
         }
-        // Triangular numer is calculated this way https://es.wikipedia.org/wiki/N%C3%BAmero_triangular
+        // The triangular number is calculated by this procedure, described at https://en.wikipedia.org/wiki/Triangular_number
         return (n * (n + 1)) / 2;
     }
 
@@ -39,8 +39,8 @@ export class SeriesCalculation {
         if (n === 2) {
             return 3;
         }
-        // Every prime number larger than 3 is of the form 6N-1 or 6N+1, where N is a natural number.
-        // BUT having the first 2 prime numbers I had to adapt the models, here they are.
+        // Every prime number larger than 3 is on the form 6N-1 or 6N+1, where N is a natural number.
+        // BUT having the first 2 prime numbers, I've adapted the model, as shown below.
         if (n % 2 !== 0) {
             return 6 * (Math.ceil((n - 2) / 2)) - 1;
         }
@@ -55,7 +55,7 @@ export class SeriesCalculation {
         if (n < 0) {
             throw new Error("n must be 0 or greater.");
         }
-        // First two elements of the serie
+        // First two elements of the series
         let fibonacciSecondLastElement: number = this._fibonacciSeriesElements[0];
         let fibonacciLastElement: number = this._fibonacciSeriesElements[1];
         let result: number = 0;
