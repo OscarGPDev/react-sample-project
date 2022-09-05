@@ -10,6 +10,7 @@ To install the project dependencies just run:
 `npm install`
 
 then you'll be able to run one of the following scripts.
+If you want to try a live version click here: [https://react-sample-79902.web.app](https://react-sample-79902.web.app)
 
 ## Available Scripts
 
